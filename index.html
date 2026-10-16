@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MISTER CASH | Catalogue officiel</title>
+
+<meta name="description"
+content="Découvrez le catalogue MISTER CASH et contactez notre service client.">
+
+<style>
+:root {
+  --black: #0b0b0b;
+  --panel: #171717;
+  --gold: #d4af37;
+  --white: #ffffff;
+  --gray: #b8b8b8;
+  --red: #790d19;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  padding: 22px 15px;
+  text-align: center;
+  background: #050505;
+  border-bottom: 2px solid var(--gold);
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+header h1 {
+  color: var(--gold);
+  font-size: 30px;
+  letter-spacing: 3px;
+  margin-top: 10px;
+}
+
+header p {
+  color: var(--gray);
+}
+
+.hero {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(140deg, #191919, #410b12);
+}
+
+.hero h2 {
+  color: var(--gold);
+  font-size: clamp(27px, 5vw, 42px);
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: #eee;
+}
+
+.button {
+  display: inline-block;
+  border: 0;
+  padding: 13px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  background: var(--gold);
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.hero .button {
+  margin-top: 25px;
+}
+
+.container {
+  max-width: 1100px;
+  padding: 35px 16px;
+  margin: auto;
+}
+
+.section-title {
+  color: var(--gold);
+  text-align: center;
+  font-size: 27px;
+  margin-bottom: 25px;
+}
+
+.catalogue {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid #393939;
+  border-radius: 15px;
+  text-align: center;
+  transition: .2s;
+}
+
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--gray);
+  margin-bottom: 18px;
+}
+
+.card .button {
+  width: 100%;
+}
+
+.form-panel {
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 25px;
+  border: 1px solid var(--gold);
+  border-radius: 15px;
+  background: var(--panel);
+}
+
+.form-panel h2 {
+  text-align: center;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 6px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: #0c0c0c;
+  color: white;
+  border: 1px solid #494949;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+input:focus, select:focus {
+  outline: 1px solid var(--gold);
+}
+
+.form-panel button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.notice {
+  color: var(--gray);
+  font-size: 13px;
+  margin-top: 17px;
+}
+
+.contact {
+  text-align: center;
+  background: #161616;
+  padding: 35px 20px;
+}
+
+.contact h2 {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.contact .button {
+  margin-top: 18px;
+  background: #167d43;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px;
+  background: #050505;
+  border-top: 1px solid #333;
+  color: var(--gray);
+  font-size: 13px;
+}
+
+footer strong {
+  color: var(--gold);
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .hero {
+    padding: 40px 18px;
+  }
+
+  .form-panel {
+    padding: 19px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- Place ton logo dans le même dossier sous le nom logo.jpg -->
+  <img class="logo" src="logo.jpg" alt="Logo Mister Cash">
+
+  <h1>MISTER CASH</h1>
+  <p>Votre service, votre budget.</p>
+</header>
+
+<section class="hero">
+  <h2>Bienvenue chez MISTER CASH</h2>
+
+  <p>
+    Découvrez nos offres, consultez leurs caractéristiques
+    et contactez notre service client pour obtenir des informations.
+  </p>
+
+  <a class="button" href="#catalogue">Découvrir le catalogue</a>
+</section>
+
+<main class="container" id="catalogue">
+
+  <h2 class="section-title">NOS OFFRES</h2>
+
+  <div class="catalogue">
+
+    <article class="card">
+      <div class="card-icon">💳</div>
+      <h3>Carte Visa</h3>
+
+      <p>
+        Découvrez les caractéristiques, les frais et les conditions
+        de la carte proposée par son émetteur.
+      </p>
+
+      <button class="button"
+        onclick="selectOffer('Carte Visa')">
+        En savoir plus
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">💳</div>
+      <h3>Carte Mastercard</h3>
+
+      <p>
+        Consultez les informations et les conditions applicables
+        à cette offre.
+      </p>
+
+      <button class="button"
+        onclick="selectOffer('Carte Mastercard')">
+        En savoir plus
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">⭐</div>
+      <h3>Autres offres</h3>
+
+      <p>
+        Contactez-nous pour obtenir des informations sur
+        les autres services disponibles.
+      </p>
+
+      <button class="button"
+        onclick="selectOffer('Autre offre')">
+        Nous contacter
+      </button>
+    </article>
+
+  </div>
+
+  <section class="form-panel" id="commande">
+
+    <h2>Demande de renseignements</h2>
+
+    <form id="orderForm">
+
+      <label for="offer">Offre souhaitée</label>
+
+      <select id="offer" required>
+        <option value="">Sélectionnez une offre</option>
+        <option value="Carte Visa">Carte Visa</option>
+        <option value="Carte Mastercard">Carte Mastercard</option>
+        <option value="Autre offre">Autre offre</option>
+      </select>
+
+      <label for="fullname">Nom et prénom</label>
+      <input
+        id="fullname"
+        type="text"
+        autocomplete="name"
+        maxlength="100"
+        required
+      >
+
+      <label for="address">Adresse</label>
+      <input
+        id="address"
+        type="text"
+        autocomplete="street-address"
+        maxlength="150"
+        required
+      >
+
+      <label for="postal">Code postal</label>
+      <input
+        id="postal"
+        type="text"
+        autocomplete="postal-code"
+        maxlength="20"
+        required
+      >
+
+      <label for="city">Ville</label>
+      <input
+        id="city"
+        type="text"
+        autocomplete="address-level2"
+        maxlength="80"
+        required
+      >
+
+      <label for="country">Pays</label>
+      <input
+        id="country"
+        type="text"
+        autocomplete="country-name"
+        maxlength="80"
+        required
+      >
+
+      <label for="phone">Numéro de téléphone</label>
+      <input
+        id="phone"
+        type="tel"
+        autocomplete="tel"
+        maxlength="25"
+        required
+      >
+
+      <p class="notice">
+        En continuant, vous ouvrirez WhatsApp avec votre demande
+        préremplie. Vous devrez appuyer sur Envoyer pour la transmettre.
+        Les informations saisies seront incluses dans le message.
+        N'indiquez jamais de code PIN, de CVV ou de mot de passe bancaire.
+      </p>
+
+      <button class="button" type="submit">
+        Continuer sur WhatsApp
+      </button>
+
+    </form>
+
+  </section>
+
+</main>
+
+<section class="contact">
+  <h2>Besoin d'informations ?</h2>
+
+  <p>Notre service client est disponible sur WhatsApp.</p>
+
+  <a class="button"
+     href="https://wa.me/33755534365"
+     target="_blank"
+     rel="noopener noreferrer">
+    Contacter MISTER CASH
+  </a>
+</section>
+
+<footer>
+  <strong>MISTER CASH</strong><br>
+  Catalogue et service client<br>
+  © <span id="year"></span> MISTER CASH
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "33755534365";
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  function selectOffer(offer) {
+    document.getElementById("offer").value = offer;
+
+    document.getElementById("commande").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  document.getElementById("orderForm").addEventListener(
+    "submit",
+    function(event) {
+      event.preventDefault();
+
+      const offer = document.getElementById("offer").value;
+      const fullname =
+        document.getElementById("fullname").value.trim();
+      const address =
+        document.getElementById("address").value.trim();
+      const postal =
+        document.getElementById("postal").value.trim();
+      const city =
+        document.getElementById("city").value.trim();
+      const country =
+        document.getElementById("country").value.trim();
+      const phone =
+        document.getElementById("phone").value.trim();
+
+      if (!offer || !fullname || !address ||
+          !postal || !city || !country || !phone) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      const message = [
+        "Bonjour MISTER CASH,",
+        "",
+        "Je souhaite obtenir des renseignements sur une offre.",
+        "",
+        "Offre : " + offer,
+        "Nom et prénom : " + fullname,
+        "Adresse : " + address,
+        "Code postal : " + postal,
+        "Ville : " + city,
+        "Pays : " + country,
+        "Téléphone : " + phone,
+        "",
+        "Merci de me communiquer les tarifs et les conditions applicables."
+      ].join("\n");
+
+      const whatsappURL =
+        "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(message);
+
+      window.location.href = whatsappURL;
+    }
+  );
+</script>
+
+</body>
+</html>
