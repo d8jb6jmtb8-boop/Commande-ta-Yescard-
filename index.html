@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>MISTER CASH — Commande</title>
+
+<style>
+:root {
+  --bg: #090909;
+  --panel: #151515;
+  --gold: #d4af57;
+  --gold-light: #f0d68d;
+  --text: #fff;
+  --muted: #b8b8b8;
+  --border: #37312a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(850px, 92%);
+  margin: auto;
+}
+
+header {
+  border-bottom: 1px solid var(--border);
+  background: #101010;
+}
+
+.header-inner {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.logo span {
+  color: var(--gold);
+}
+
+.header-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+main {
+  min-height: 70vh;
+}
+
+.page {
+  display: none;
+  padding: 48px 0 65px;
+}
+
+.page.active {
+  display: block;
+}
+
+.eyebrow {
+  color: var(--gold-light);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.15;
+  margin: 13px 0;
+}
+
+h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.intro {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid #806832;
+  border-radius: 13px;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 7px;
+  border: 1px solid var(--gold);
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary {
+  background: var(--gold);
+  color: #111;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--gold-light);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.button-row .button {
+  flex: 1;
+}
+
+.note {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #665124;
+  background: #211a0c;
+  color: #eadbb6;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* OFFRES */
+
+.offers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.offer {
+  padding: 21px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 11px;
+}
+
+.offer.selected {
+  border-color: var(--gold);
+}
+
+.offer .price {
+  color: var(--gold-light);
+  font-size: 28px;
+  font-weight: 800;
+  margin: 12px 0;
+}
+
+.offer p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.offer .status {
+  color: var(--gold-light);
+  font-size: 11px;
+  margin: 12px 0;
+}
+
+.offer button {
+  width: 100%;
+  margin-top: 13px;
+}
+
+/* FORMULAIRE */
+
+.form-panel,
+.summary-panel {
+  padding: 23px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 22px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  color: white;
+  background: #0b0b0b;
+  border: 1px solid #454039;
+  border-radius: 7px;
+}
+
+.field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--gold);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.summary-row span:first-child {
+  color: var(--muted);
+}
+
+.summary-row span:last-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 23px 0;
+  background: #050505;
+  text-align: center;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+@media (max-width: 560px) {
+  .header-inner {
+    min-height: 65px;
+  }
+
+  .header-label {
+    display: none;
+  }
+
+  .page {
+    padding: 35px 0 48px;
+  }
+
+  .offers,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .form-panel,
+  .summary-panel {
+    padding: 17px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .button-row .button {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo">MISTER <span>CASH</span></a>
+    <span class="header-label">Espace de commande</span>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE 1 : DÉMONSTRATION -->
+
+<section class="page active" id="page-demo">
+  <div class="container">
+
+    <span class="eyebrow">Présentation</span>
+    <h1>Vidéo de démonstration</h1>
+
+    <p class="intro">
+      Découvrez notre présentation avant de consulter le catalogue.
+    </p>
+
+    <div class="video-frame">
+      <video controls playsinline preload="metadata">
+        <source src="./demonstration.MP4" type="video/mp4">
+        Votre navigateur ne peut pas lire cette vidéo.
+      </video>
+    </div>
+
+    <div class="button-row">
+      <button class="button primary" type="button" data-next="page-offers">
+        Continuer vers les tarifs →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAGE 2 : TARIFS -->
+
+<section class="page" id="page-offers">
+  <div class="container">
+
+    <span class="eyebrow">Catalogue</span>
+    <h1>Choisissez votre offre</h1>
+
+    <p class="intro">
+      Consultez les prix et sélectionnez l'offre qui vous intéresse.
+    </p>
+
+    <div class="offers" id="offers"></div>
+
+    <div class="note">
+      <strong>Information :</strong>
+      les plafonds, retraits et durées indiqués sont des données
+      annoncées qui n'ont pas été vérifiées. Ils ne garantissent
+      ni l'existence de fonds ni la possibilité d'effectuer un retrait.
+      Vérifiez les conditions auprès de l'émetteur officiel.
+    </div>
+
+    <div class="button-row">
+      <button class="button secondary" type="button" data-next="page-demo">
+        ← Retour à la vidéo
+      </button>
+
+      <button class="button primary" id="continueOrder" type="button">
+        Passer une commande →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAGE 3 : COORDONNÉES -->
+
+<section class="page" id="page-details">
+  <div class="container">
+
+    <span class="eyebrow">Vos coordonnées</span>
+    <h1>Passer une commande</h1>
+
+    <p class="intro">
+      Remplissez les informations nécessaires pour préparer votre demande.
+    </p>
+
+    <div class="summary-panel" id="chosenOffer"></div>
+
+    <form class="form-panel" id="orderForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="nom">Nom *</label>
+          <input id="nom" name="nom" required maxlength="100"
+                 autocomplete="family-name">
+        </div>
+
+        <div class="field">
+          <label for="prenom">Prénom *</label>
+          <input id="prenom" name="prenom" required maxlength="100"
+                 autocomplete="given-name">
+        </div>
+
+        <div class="field full">
+          <label for="adresse">Adresse complète *</label>
+          <input id="adresse" name="adresse" required maxlength="200"
+                 autocomplete="street-address"
+                 placeholder="Numéro et nom de rue">
+        </div>
+
+        <div class="field">
+          <label for="postal">Code postal *</label>
+          <input id="postal" name="postal" required maxlength="20"
+                 autocomplete="postal-code">
+        </div>
+
+        <div class="field">
+          <label for="ville">Ville *</label>
+          <input id="ville" name="ville" required maxlength="100"
+                 autocomplete="address-level2">
+        </div>
+
+        <div class="field full">
+          <label for="pays">Pays *</label>
+          <input id="pays" name="pays" required maxlength="100"
+                 autocomplete="country-name">
+        </div>
+
+        <div class="field full">
+          <label for="telephone">Téléphone avec indicatif *</label>
+          <input id="telephone" name="telephone" type="tel"
+                 required maxlength="30" autocomplete="tel"
+                 placeholder="+33 7 00 00 00 00">
+        </div>
+
+        <div class="field full">
+          <label for="quantite">Quantité *</label>
+          <input id="quantite" name="quantite" type="number"
+                 min="1" max="10" value="1" required>
+        </div>
+
+        <div class="field full">
+          <label for="message">Message complémentaire</label>
+          <textarea id="message" name="message" maxlength="1000"
+                    placeholder="Votre message (facultatif)"></textarea>
+        </div>
+
+      </div>
+
+      <div class="button-row">
+        <button class="button secondary" type="button" data-next="page-offers">
+          ← Modifier mon offre
+        </button>
+
+        <button class="button primary" type="submit">
+          Vérifier ma demande →
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- PAGE 4 : RÉCAPITULATIF -->
+
+<section class="page" id="page-confirm">
+  <div class="container">
+
+    <span class="eyebrow">Récapitulatif</span>
+    <h1>Vérifiez votre demande</h1>
+
+    <p class="intro">
+      Vérifiez les informations ci-dessous avant d'ouvrir WhatsApp.
+    </p>
+
+    <div class="summary-panel" id="orderSummary"></div>
+
+    <div class="note">
+      L'envoi se fait depuis WhatsApp après votre confirmation.
+      Cette page ne traite aucun paiement et ne confirme pas
+      automatiquement la commande.
+    </div>
+
+    <div class="button-row">
+      <button class="button secondary" type="button" data-next="page-details">
+        ← Modifier mes coordonnées
+      </button>
+
+      <button class="button primary" type="button" id="sendWhatsApp">
+        Transmettre sur WhatsApp
+      </button>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">MISTER <span>CASH</span></div>
+    <p>Catalogue et demandes de commande.</p>
+    <p>© <span id="year"></span> MISTER CASH</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+const WHATSAPP_NUMBER = "33755534365";
+
+const products = [
+  {
+    id: 1,
+    name: "Classic Visa",
+    price: 300,
+    limit: "15 000 € annoncés",
+    daily: "750 € par jour annoncés",
+    duration: "45 jours annoncés"
+  },
+  {
+    id: 2,
+    name: "Classic Visa Plus",
+    price: 400,
+    limit: "20 000 € annoncés",
+    daily: "1 000 € par jour annoncés",
+    duration: "45 jours annoncés"
+  },
+  {
+    id: 3,
+    name: "Classic Mastercard",
+    price: 500,
+    limit: "32 000 € annoncés",
+    daily: "1 500 € par jour annoncés",
+    duration: "60 jours annoncés"
+  },
+  {
+    id: 4,
+    name: "Gold Mastercard",
+    price: 600,
+    limit: "50 000 € annoncés",
+    daily: "2 500 € par jour annoncés",
+    duration: "60 jours annoncés"
+  },
+  {
+    id: 5,
+    name: "Platinum Mastercard",
+    price: 700,
+    limit: "70 000 € annoncés",
+    daily: "3 000 € par jour annoncés",
+    duration: "90 jours annoncés"
+  }
+];
+
+let selectedId = null;
+let orderData = null;
+
+function formatPrice(value) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0
+  }).format(value);
+}
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.toggle("active", page.id === id);
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("[data-next]").forEach(button => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.next);
+  });
+});
+
+function renderOffers() {
+  const container = document.getElementById("offers");
+
+  container.innerHTML = products.map(product => `
+    <article class="offer ${selectedId === product.id ? "selected" : ""}">
+      <h3>${product.name}</h3>
+
+      <p>Plafond annoncé : ${product.limit}</p>
+      <p>Retrait annoncé : ${product.daily}</p>
+      <p>Durée annoncée : ${product.duration}</p>
+
+      <div class="price">${formatPrice(product.price)}</div>
+
+      <div class="status">CARACTÉRISTIQUES À VÉRIFIER</div>
+
+      <button class="button ${selectedId === product.id ? "primary" : "secondary"}"
+              type="button" data-select="${product.id}">
+        ${selectedId === product.id ? "Offre sélectionnée" : "Choisir cette offre"}
+      </button>
+    </article>
+  `).join("");
+}
+
+document.getElementById("offers").addEventListener("click", event => {
+  const button = event.target.closest("[data-select]");
+  if (!button) return;
+
+  selectedId = Number(button.dataset.select);
+  renderOffers();
+});
+
+document.getElementById("continueOrder").addEventListener("click", () => {
+  if (!selectedId) {
+    alert("Veuillez choisir une offre avant de continuer.");
+    return;
+  }
+
+  const product = products.find(item => item.id === selectedId);
+
+  document.getElementById("chosenOffer").innerHTML = `
+    <div class="summary-row">
+      <span>Offre sélectionnée</span>
+      <span>${product.name}</span>
+    </div>
+    <div class="summary-row">
+      <span>Prix unitaire indicatif</span>
+      <span>${formatPrice(product.price)}</span>
+    </div>
+  `;
+
+  showPage("page-details");
+});
+
+document.getElementById("orderForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const product = products.find(item => item.id === selectedId);
+  const quantity = Number(document.getElementById("quantite").value);
+
+  if (!product || !Number.isInteger(quantity) ||
+      quantity < 1 || quantity > 10) {
+    alert("Veuillez vérifier l'offre et la quantité.");
+    return;
+  }
+
+  orderData = {
+    nom: document.getElementById("nom").value.trim(),
+    prenom: document.getElementById("prenom").value.trim(),
+    adresse: document.getElementById("adresse").value.trim(),
+    postal: document.getElementById("postal").value.trim(),
+    ville: document.getElementById("ville").value.trim(),
+    pays: document.getElementById("pays").value.trim(),
+    telephone: document.getElementById("telephone").value.trim(),
+    message: document.getElementById("message").value.trim(),
+    product,
+    quantity,
+    total: product.price * quantity
+  };
+
+  const rows = [
+    ["Nom", orderData.nom],
+    ["Prénom", orderData.prenom],
+    ["Adresse", orderData.adresse],
+    ["Code postal", orderData.postal],
+    ["Ville", orderData.ville],
+    ["Pays", orderData.pays],
+    ["Téléphone", orderData.telephone],
+    ["Offre", orderData.product.name],
+    ["Quantité", String(orderData.quantity)],
+    ["Prix unitaire indicatif", formatPrice(orderData.product.price)],
+    ["Total indicatif", formatPrice(orderData.total)],
+    ["Message", orderData.message || "Aucun"]
+  ];
+
+  document.getElementById("orderSummary").innerHTML = rows.map(([label, value]) => `
+    <div class="summary-row">
+      <span>${label}</span>
+      <span></span>
+    </div>
+  `).join("");
+
+  // Insérer les valeurs comme texte pour éviter d'interpréter
+  // les données saisies par le client comme du HTML.
+  const summary = document.getElementById("orderSummary");
+  summary.replaceChildren();
+
+  rows.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "summary-row";
+
+    const left = document.createElement("span");
+    left.textContent = label;
+
+    const right = document.createElement("span");
+    right.textContent = value;
+
+    row.append(left, right);
+    summary.appendChild(row);
+  });
+
+  showPage("page-confirm");
+});
+
+document.getElementById("sendWhatsApp").addEventListener("click", () => {
+  if (!orderData) {
+    alert("Veuillez d'abord remplir le formulaire.");
+    showPage("page-details");
+    return;
+  }
+
+  const d = orderData;
+
+  const message = [
+    "Bonjour MISTER CASH, voici ma demande.",
+    "",
+    "Nom : " + d.nom,
+    "Prénom : " + d.prenom,
+    "Adresse : " + d.adresse,
+    "Code postal : " + d.postal,
+    "Ville : " + d.ville,
+    "Pays : " + d.pays,
+    "Téléphone : " + d.telephone,
+    "",
+    "Offre : " + d.product.name,
+    "Quantité : " + d.quantity,
+    "Prix unitaire indicatif : " + formatPrice(d.product.price),
+    "Total indicatif : " + formatPrice(d.total),
+    "",
+    "Message : " + (d.message || "Aucun"),
+    "",
+    "Merci de confirmer les conditions de l'offre avant toute transaction."
+  ].join("\n");
+
+  const url = "https://wa.me/" + WHATSAPP_NUMBER +
+              "?text=" + encodeURIComponent(message);
+
+  window.location.href = url;
+});
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderOffers();
+</script>
+
+</body>
+</html>
